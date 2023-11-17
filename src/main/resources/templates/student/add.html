@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}">
+    <head>
+        <title>[[#{student.add.headline}]]</title>
+    </head>
+    <body>
+        <div layout:fragment="content">
+            <div class="d-flex flex-wrap mb-4">
+                <h1 class="flex-grow-1">[[#{student.add.headline}]]</h1>
+                <div>
+                    <a th:href="@{/students}" class="btn btn-secondary">[[#{student.add.back}]]</a>
+                </div>
+            </div>
+            <div th:replace="~{fragments/forms::globalErrors('student')}" />
+            <form th:action="${requestUri}" method="post">
+                <div th:replace="~{fragments/forms::inputRow(object='student', field='name')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='student', field='age', type='number')}" />
+                <div th:replace="~{fragments/forms::inputRow(object='student', field='courses', type='multiselect')}" />
+                <input type="submit" th:value="#{student.add.headline}" class="btn btn-primary mt-4" />
+            </form>
+        </div>
+    </body>
+</html>
